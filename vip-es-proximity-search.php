@@ -57,9 +57,14 @@ if (defined('WP_CLI') && WP_CLI) {
 }
 
 function find_nearby_command($args, $assoc_args) {
-    $distance = $assoc_args['distance'];
-    $lat = $assoc_args['lat'];
-    $lon = $assoc_args['lon'];
+    $distance = isset($assoc_args['distance']) ? $assoc_args['distance']: false;
+    $lat = isset($assoc_args['lat']) ? $assoc_args['lat'] : false;
+    $lon = $assoc_args['lon'] ? $assoc_args['lon'] : false;
+
+    if(!$distance || !$lat || !$lon){
+        WP_CLI::error('Please specify arguments for --distance, --lat and --lon');
+        return;
+    }
 
     // Define WP_Query arguments for geo-location query
     $query_args = [
