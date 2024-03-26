@@ -4,7 +4,7 @@
 
 ES Proximity Search is a WordPress plugin developed as a proof of concept. It provides a custom post type called "geopost" and an example proximity search feature using VIP Search with Elasticsearch. This allows you to create geoposts with latitude and longitude information and perform location-based searches within your WordPress site.
 
-This plugin depends on https://github.com/rickhurst/ep-geo-vip-search
+This plugin depends on https://github.com/thinkshout/ep-geo (tested against version 0.1.3)
 
 ## Installation
 
