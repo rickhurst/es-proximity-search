@@ -82,8 +82,17 @@ function find_nearby_command($args, $assoc_args) {
         ],
     ];
 
+    // Start the timer
+    $start_time = microtime(true);
+
     // Execute the WP_Query
     $nearby_posts = new WP_Query($query_args);
+
+    // Stop the timer
+    $end_time = microtime(true);
+
+    // Calculate the time taken for the query
+    $query_time = round($end_time - $start_time, 3);
 
     // Check if any posts were found
     if ($nearby_posts->have_posts()) {
@@ -98,6 +107,9 @@ function find_nearby_command($args, $assoc_args) {
     } else {
         WP_CLI::success("No posts found within the specified distance.");
     }
+
+    // Include query time in the success message
+    WP_CLI::success("Time taken for query: {$query_time} seconds.");
 
     wp_reset_postdata();
 }
